@@ -1,0 +1,123 @@
+@import url('https://fonts.googleapis.com/css2?family=New+Tegomin&display=swap');
+*{
+    padding: 0;
+    margin: 0;
+    font-family: 'New Tegomin', serif;
+}
+
+.body{
+    background: url("../img/bg2.jpg"); 
+    min-height: 100vh;
+    background-size: 100vw 100vh;
+    background-repeat: no-repeat;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#scoreBox{
+    position: absolute;
+    top: 9px;
+    right: 200px;
+    font-size: 39px;
+    font-weight: bold;
+    font-family: 'New Tegomin', serif;
+}
+
+#hiscoreBox{
+    position: absolute;
+    top: 59px;
+    right: 140px;
+    font-size: 39px;
+    font-weight: bold;
+}
+
+.gameInfo{
+    background: -webkit-linear-gradient(47deg,#05b82c 40%,
+    rgb(255, 255, 255) 90%);
+    -webkit-text-fill-color: transparent;
+    -webkit-background-clip: text;
+}
+
+#main-menu {
+        background: linear-gradient(#212121, #212121) 
+        padding-box,
+        linear-gradient(144deg,#05b82c, #fff) 
+        border-box;
+        width: 90vmin;
+        height: 92vmin;
+        border: 2px solid transparent;
+        z-index: 1;
+        position: absolute;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+}
+p {
+    background: -webkit-linear-gradient(47deg,#05b82c 10%,
+    rgb(255, 255, 255) 90%);
+    -webkit-text-fill-color: transparent;
+    -webkit-background-clip: text;
+    font-size: 39px;
+    font-weight: bold;
+}
+strong > p {
+    text-align: center;
+    position: relative;
+    bottom: 50px;
+}
+li {
+    list-style: none;
+    text-align: center;
+    margin-top: 20px;
+    position: relative;
+    top: 20px;
+    transition: all .7s ease;
+
+    &:hover {
+        filter: brightness(2) opacity(.8) contrast(2);
+    }
+
+    button {
+        background: none;
+        border: none;
+        transition: transform .3s ease;
+
+        &:active {
+            transform: scale(.91);
+            filter: brightness(50);
+        }
+    }
+}
+#board{
+    background: linear-gradient(#212121, #212121) 
+    padding-box,
+    linear-gradient(144deg,#e81cff, #40c9ff) 
+    border-box;
+    width: 90vmin;
+    height: 92vmin;
+    border: 2px solid transparent;
+    display: grid;
+    grid-template-rows: repeat(18, 1fr);
+    grid-template-columns: repeat(18, 1fr);
+}
+
+.head{
+    background: linear-gradient(144deg, transparent 1%,#05b82c, #008f4c) ;
+    border: 2px solid rgb(34, 4, 34); 
+    transform: scale(1.02);
+    border-radius: 12px;
+
+}
+
+.snake{
+    background-color: purple;
+    border: .25vmin solid white;
+    border-radius: 12px;
+}
+
+.food{
+    background: linear-gradient(red, purple);
+    border: .25vmin solid black;
+    border-radius: 8px;
+}

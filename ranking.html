@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Scores</title>
+</head>
+<body>
+    <h1>User Scores</h1>
+    <div id="table"></div>
+
+    <a href="./index.html">Sair</a>
+    <script>
+        async function request() {
+            try {
+                // Faz a requisição para o servidor (ajuste o endpoint conforme necessário)
+                const promise = await fetch('./controller/server.php?users=?');  
+                const response = await promise.json();
+
+                // Chama a função para exibir a tabela com os dados retornados
+                displayTable(response);
+
+            } catch (error) {
+                console.log(`Request error: ${error}`);
+            }
+        }
+
+        // Função para criar e exibir a tabela na página
+        function displayTable(data) {
+            // Acessa o div onde a tabela será inserida
+            const tableDiv = document.getElementById('table');
+
+            // Cria a estrutura da tabela
+            let tableHTML = `<table border="1">
+                                <thead>
+                                    <tr>
+                                        <th>Username</th>
+                                        <th>Score</th>
+                                    </tr>
+                                </thead>
+                                <tbody>`;
+
+            // Adiciona as linhas para cada usuário e sua pontuação
+            data.forEach(user => {
+                tableHTML += `<tr>
+                                <td>${user.User}</td>
+                                <td>${user.Score}</td>
+                              </tr>`;
+            });
+
+            tableHTML += `   </tbody>
+                          </table>`;
+
+            // Insere a tabela no div
+            tableDiv.innerHTML = tableHTML;
+        }
+
+        // Chama a função de requisição ao carregar a página
+        request();
+    </script>
+</body>
+</html>
