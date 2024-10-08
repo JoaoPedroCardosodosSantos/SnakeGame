@@ -13,7 +13,6 @@ let snakeArr = [
 ];
 food = { x: 6, y: 7 };
 
-// Variáveis para controle do jogador e envio de pontuação
 let playerName = '';
 let lastScore = 0; // Última pontuação do jogador
 let hiscore = 0; // HiScore atual
@@ -42,17 +41,10 @@ async function updateHiscore(newHiscore, playerName) {
     }
 }
 
-// Função para enviar a pontuação ao servidor quando o jogador clicar em "Sair"
 async function sendScoreToServer() {
     if (lastScore > 0) {
-        // Só atualiza o HiScore se o score for maior que o atual HiScore
-        if (lastScore > hiscore) {
-            await updateHiscore(lastScore, playerName); // Atualiza o HiScore com a pontuação final
-            alert(`Novo HiScore enviado! Jogador: ${playerName}, HiScore: ${lastScore}`);
-        } else {
-            alert(`Pontuação enviada! Jogador: ${playerName}, Pontuação: ${lastScore}`);
-            await updateHiscore(lastScore, playerName);
-        }
+            await updateHiscore(lastScore, playerName); 
+            //alert(`Pontuação enviada! Jogador: ${playerName}, Pontuação: ${lastScore}`);
     } else {
         alert("Nenhuma pontuação para enviar.");
     }
@@ -87,7 +79,7 @@ async function gameEngine() {
         gameOverSound.play();
         musicSound.pause();
         inputDir = { x: 0, y: 0 };
-        alert("Fim de jogo. Pressione OK para jogar novamente!");
+        alert("Fim de jogo. Pressione 'Enter' para jogar novamente! \n\n Ou precione o botão azul para sair!");
 
         // Salva a última pontuação, mas NÃO envia para o servidor ainda
         lastScore = score;
@@ -146,14 +138,13 @@ async function gameEngine() {
 }
 
 async function initializeGame() {
-    // Solicita o nome do jogador ao iniciar o jogo
-    playerName = prompt("Digite seu nome para salvar o score:", "Default");
-    if (!playerName) playerName = "Default"; // Usa "Default" se o nome for vazio
 
-    // Inicia a música
+   playerName = prompt("Digite seu nome para salvar o score:", "Default");
+
+    if (!playerName) playerName = "Default"; 
+
     musicSound.play();
 
-    // Pega o hiscore inicial do servidor
     hiscore = await getHiscore();
     if (hiscore === null) {
         hiscore = 0;
@@ -162,7 +153,6 @@ async function initializeGame() {
     hiscoreBox.innerHTML = "HiScore: " + hiscore;
 }
 
-// Eventos de controle da cobra e início do jogo
 window.addEventListener('keydown', (event) => {
     document.getElementById("main-menu").style.display = 'none';
     document.getElementById("main-menu").style.index = '-1';
@@ -170,7 +160,7 @@ window.addEventListener('keydown', (event) => {
 
     window.requestAnimationFrame(main);
     window.addEventListener('keydown', (e) => {
-        inputDir = { x: 0, y: 1 }; // Inicia o jogo
+        inputDir = { x: 0, y: 1 }; 
         moveSound.play();
         switch (e.key) {
             case "ArrowUp":
